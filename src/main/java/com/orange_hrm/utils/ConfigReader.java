@@ -1,4 +1,4 @@
-package com.parabank.utils;
+package com.orange_hrm.utils;
 
 import java.io.*;
 import java.util.Properties;

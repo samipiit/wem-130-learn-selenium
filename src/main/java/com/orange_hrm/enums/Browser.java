@@ -1,4 +1,4 @@
-package com.parabank.enums;
+package com.orange_hrm.enums;
 
 public enum Browser {
 
