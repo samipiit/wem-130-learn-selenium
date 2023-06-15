@@ -29,7 +29,7 @@ public class OrangeHRM {
     @BeforeMethod
     public void setUp(){
         // Initialize driver object
-        driver = getDriver(Browser.CHROME);
+        driver = getDriver(Browser.CHROME.BROWSER);
 
         // Initialize explicit/fluent wait object
         driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -93,7 +93,7 @@ public class OrangeHRM {
             WebElement submit = driver.findElement(By.xpath("//button[@type='submit']"));
             submit.click();
         } catch (TimeoutException e) {
-
+            e.printStackTrace();
         }
 
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@class='oxd-userdropdown-name']")));
@@ -106,8 +106,8 @@ public class OrangeHRM {
     // endregion
 
     // region Helper Methods
-    private WebDriver getDriver(Browser browser) {
-        switch (browser.BROWSER) {
+    private WebDriver getDriver(String browser) {
+        switch (browser.toLowerCase()) {
             case "firefox" -> {
                 FirefoxOptions options = new FirefoxOptions();
                 options.setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
