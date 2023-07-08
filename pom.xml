@@ -13,6 +13,8 @@
         <module>orangehrm</module>
         <module>ebay</module>
         <module>demoqa</module>
+        <module>letskodeit</module>
+        <module>expedia</module>
     </modules>
 
     <properties>

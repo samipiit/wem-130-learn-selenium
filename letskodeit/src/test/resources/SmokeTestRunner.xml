@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Smoke" verbose="1" >
+
+    <parameter name="browser" value="chrome"/>
+    <parameter name="url" value="https://www.letskodeit.com/practice"/>
+    <parameter name="driverTotalTimeout" value="10"/>
+    <parameter name="driverPollingInterval" value="500"/>
+
+    <test name="Smoke Tests">
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <exclude name="broken"/>
+            </run>
+        </groups>
+        <classes>
+<!--            <class name=""/>-->
+        </classes>
+    </test>
+
+</suite>

@@ -34,7 +34,7 @@ public class BasePage {
 
     @Parameters({"browser", "url", "driverTotalTimeout", "driverPollingInterval"})
     @BeforeMethod (alwaysRun = true)
-    public void setUp(@Optional("chrome") String browser, @Optional("https://demoqa.com/automation-practice-form") String url,
+    public void setUp(@Optional("chrome") String browser, @Optional("https://opensource-demo.orangehrmlive.com/") String url,
                       @Optional("10") String driverTotalTimeout, @Optional("500") String driverPollingInterval){
         // Initialize driver object
         initDriver(browser, url, Long.parseLong(driverTotalTimeout), Long.parseLong(driverPollingInterval));
@@ -52,11 +52,11 @@ public class BasePage {
 
     // region Selenium Methods
     public void clickElement(WebElement element) {
-        driverWait.until(ExpectedConditions.elementToBeClickable(element));
 
         try {
+            driverWait.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-        } catch (ElementClickInterceptedException e) {
+        } catch (TimeoutException | ElementClickInterceptedException e) {
             jsClickElement(element);
         }
     }

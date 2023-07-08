@@ -19,6 +19,9 @@ public class LoginPage extends BasePage {
     @FindBy (xpath = "//button[@type='submit']")
     public WebElement loginButton;
 
+    @FindBy (xpath = "//div[@class='oxd-alert oxd-alert--error']")
+    public WebElement errorMsg;
+
     public LoginPage() {
         PageFactory.initElements(driver, this);
     }
@@ -43,7 +46,7 @@ public class LoginPage extends BasePage {
         loginAttempts++;
 
         try {
-            driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='oxd-alert oxd-alert--error']")));
+            driverWait.until(ExpectedConditions.visibilityOf(errorMsg));
 
             if (loginAttempts < 3) {
                 login(username, password);
