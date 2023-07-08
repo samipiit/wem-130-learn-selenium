@@ -19,4 +19,15 @@ public class TestSearch extends BasePage {
         Assert.assertEquals(searchResultsPage.textSearchTerm.getText(), validationTerm);
     }
 
+    @Test
+    public void testDoSearchWithCategory() {
+        homepage = new Homepage();
+
+        String searchTerm = "iPad";
+        SearchResultsPage searchResultsPage = homepage.doCategorySearch(Homepage.CATEGORY_COMPUTERS_TABLETS_NETWORKING, searchTerm);
+
+        Assert.assertEquals(searchResultsPage.textSearchTerm.getText(), searchTerm);
+        Assert.assertEquals(searchResultsPage.getSelectedCategoryText(), Homepage.CATEGORY_COMPUTERS_TABLETS_NETWORKING.trim());
+    }
+
 }

@@ -1,6 +1,7 @@
 package base;
 
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import utils.ConfigReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -32,9 +33,10 @@ public class BasePage {
         this.excelData = new ExcelData(modulePath + File.separator + dataPath);
     }
 
+    //"https://opensource-demo.orangehrmlive.com/"
     @Parameters({"browser", "url", "driverTotalTimeout", "driverPollingInterval"})
     @BeforeMethod (alwaysRun = true)
-    public void setUp(@Optional("chrome") String browser, @Optional("https://opensource-demo.orangehrmlive.com/") String url,
+    public void setUp(@Optional("chrome") String browser, @Optional("https://expedia.com") String url,
                       @Optional("10") String driverTotalTimeout, @Optional("500") String driverPollingInterval){
         // Initialize driver object
         initDriver(browser, url, Long.parseLong(driverTotalTimeout), Long.parseLong(driverPollingInterval));
@@ -45,7 +47,6 @@ public class BasePage {
         if(driver != null) {
             driver.quit();
         }
-
     }
 
     // endregion
@@ -81,6 +82,21 @@ public class BasePage {
         }
 
         return true;
+    }
+
+    public void selectFromDropdownByVisibleText(WebElement element, String visibleText) {
+        Select select = new Select(element);
+        select.selectByVisibleText(visibleText);
+    }
+
+    public void selectFromDropdownByIndex(WebElement element, int index) {
+        Select select = new Select(element);
+        select.selectByIndex(index);
+    }
+
+    public void selectFromDropdownByValue(WebElement element, String value) {
+        Select select = new Select(element);
+        select.selectByValue(value);
     }
 
     // endregion

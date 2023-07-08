@@ -9,38 +9,28 @@ import java.util.List;
 public class TestDatePicker extends BasePage {
 
     @Test
-    public void testFromDatePicker() {
+    public void testFromDatePicker() throws InterruptedException {
         Homepage homepage = new Homepage();
 
         clickElement(homepage.buttonFromDate);
         driverWait.until(ExpectedConditions.visibilityOf(homepage.tableFromDatePickerMonthLeft));
 
-        List<WebElement> tableRows = homepage.tableFromDatePickerMonthLeft.findElements(By.tagName("tr"));
+        String monthYear = "072023";
+        homepage.navigateDatePickerTo(monthYear);
 
-        List<WebElement> tableRow1FromDatePickerMonthLeft;
-        List<WebElement> tableRow2FromDatePickerMonthLeft;
-        List<WebElement> tableRow3FromDatePickerMonthLeft;
-        List<WebElement> tableRow4FromDatePickerMonthLeft;
-        List<WebElement> tableRow5FromDatePickerMonthLeft;
-        List<WebElement> tableRow6FromDatePickerMonthLeft;
+        String whichTable = homepage.determineWhichMonthTable(monthYear);
 
+        String departureDate = "24";
+        clickElement(homepage.getMonthDayButtonFromTable(whichTable, departureDate));
 
-        tableRow1FromDatePickerMonthLeft = tableRows.get(0).findElements(By.tagName("button"));
-        tableRow2FromDatePickerMonthLeft = tableRows.get(1).findElements(By.tagName("button"));
-        tableRow3FromDatePickerMonthLeft = tableRows.get(2).findElements(By.tagName("button"));
-        tableRow4FromDatePickerMonthLeft = tableRows.get(3).findElements(By.tagName("button"));
+        monthYear = "092023";
+        homepage.navigateDatePickerTo(monthYear);
+        whichTable = homepage.determineWhichMonthTable(monthYear);
 
-        try {
-            tableRow5FromDatePickerMonthLeft = tableRows.get(4).findElements(By.tagName("button"));
-            tableRow6FromDatePickerMonthLeft = tableRows.get(5).findElements(By.tagName("button"));
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Captured all table date buttons");
-        }
+        String returnDate = "4";
+        clickElement(homepage.getMonthDayButtonFromTable(whichTable, returnDate));
 
-
-
-
-
+        Thread.sleep(5000);
 
     }
 
