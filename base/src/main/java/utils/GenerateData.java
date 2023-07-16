@@ -7,6 +7,7 @@ import com.github.javafaker.service.RandomService;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -54,7 +55,6 @@ public class GenerateData {
 
     public static String password() {
         return faker.bothify("!??##?$#?##?##??#");
-
     }
 
     public static String[] dateOfBirth(String format) {
